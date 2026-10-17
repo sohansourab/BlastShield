@@ -1,0 +1,9 @@
+# BlastShield backend dependencies
+falkordb>=1.0.10,<2.0.0
+fastapi>=0.111.0,<1.0.0
+uvicorn[standard]>=0.30.0,<1.0.0
+pydantic>=2.7.0,<3.0.0
+python-dotenv>=1.0.1,<2.0.0
+# Only for the OPTIONAL in-process agent (/api/investigate). The primary
+# OpenCode-native path needs no LLM client at all.
+openai>=1.35.0,<2.0.0

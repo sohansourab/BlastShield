@@ -1,0 +1,43 @@
+# BlastShield — FalkorDB backing store
+# WeMakeDevs FalkorDB Hackathon · Track 01: Agents That Act on Connected Data
+#
+#   docker compose up -d
+#   docker compose logs -f falkordb
+#
+# FalkorDB speaks the Redis wire protocol on 6379 and is exposed unchanged to
+# the FastAPI backend and to the FalkorDB Browser (optional service below).
+
+services:
+  falkordb:
+    image: falkordb/falkordb:latest
+    container_name: blastshield-falkordb
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - falkordb-data:/data
+    environment:
+      # Persist to disk; keeps the seeded topology across container restarts.
+      FALKORDB_ARGS: "TIMEOUT MAX 0"
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "6379", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  # Optional: browser UI at http://localhost:3000
+  # falkordb-browser:
+  #   image: falkordb/falkordb-browser:latest
+  #   container_name: blastshield-falkordb-browser
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     FALKORDB_HOST: falkordb
+  #     FALKORDB_PORT: "6379"
+  #   depends_on:
+  #     falkordb:
+  #       condition: service_healthy
+
+volumes:
+  falkordb-data:

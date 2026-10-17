@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #05070d;
+  color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* React Flow dark surface */
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__background {
+  background-color: #05070d;
+}
+
+.react-flow__edge-path {
+  stroke-linecap: round;
+}
+
+.react-flow__controls-button {
+  background: #0b1220;
+  border-bottom: 1px solid #1e293b;
+  color: #cbd5e1;
+  fill: #cbd5e1;
+}
+
+.react-flow__controls-button:hover {
+  background: #131c2e;
+}
+
+/* Scanline / grid ambience for the console pane */
+.console-grid {
+  background-image: linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@keyframes blast-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+}
+
+.blast-alert-pulse {
+  animation: blast-pulse 1.6s ease-in-out infinite;
+}
+
+/* Terminal caret */
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret-blink {
+  animation: caret-blink 1s step-end infinite;
+}
